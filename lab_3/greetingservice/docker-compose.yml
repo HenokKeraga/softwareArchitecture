@@ -1,0 +1,19 @@
+version: "3"
+services:
+  book-service:
+    image: 987152/books:latest
+    ports:
+      - "8080:8080"
+    networks:
+      - book-mongoDb
+    depends_on:
+      - mongoDb
+  mongoDb:
+    image: mongo:3.4.10
+    networks:
+      - book-mongoDb
+    ports:
+      - "27017:27017"
+
+networks:
+  book-mongoDb:

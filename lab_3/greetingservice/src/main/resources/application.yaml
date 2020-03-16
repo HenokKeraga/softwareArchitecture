@@ -1,6 +1,6 @@
 spring:
   data:
     mongodb:
-      database: greeting
-      host: localhost
+      database: book
+      host: mongoDb
       port: 27017
