@@ -5,6 +5,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestOperations;
@@ -40,14 +43,21 @@ public class WebShopApplication implements CommandLineRunner {
 		AddressDTO addressDTO = new AddressDTO("1000 N main Street", "Fairfield","52557","USA");
 		customerDto.setAddress(addressDTO);
 		//todo: call the customer component to add the customer
+		String url="http://localhost:8080/customer";
+	     restTemplate.postForEntity(url,customerDto,CustomerDTO.class);
 
 		// get customer
 		//todo: call the customer component to get the customer with id 101 and print the result
-		
+		String url2="http://localhost:8080/customer/101";
+		ResponseEntity<CustomerDTO> customerDTOGet=restTemplate.getForEntity(url2,CustomerDTO.class);
+		System.out.println(" The customer is " + customerDTOGet.getBody());
 		//create products
 		
 		//todo: call the product component to create the first product 
-		//todo: call the product component to create the second product 
+		//todo: call the product component to create the second product
+		String urlAddProduct="http://localhost:8080/product/1/Soup/10";
+
+
 
 		//set stock	
 		//todo: call the product component to set the stock for the first product
