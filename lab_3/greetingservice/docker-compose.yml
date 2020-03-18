@@ -1,19 +1,27 @@
-version: "3"
+version: "2"
 services:
+  mongodb:
+    image: mongo:latest
+    container_name: "mongodb"
+    volumes:
+    - ./data/db:/data/db
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    ports:
+      - "27017:27017"
+    networks:
+      - greetingservice_default
   book-service:
     image: 987152/books:latest
     ports:
       - "8080:8080"
-    networks:
-      - book-mongoDb
+    links:
+      - mongodb
     depends_on:
-      - mongoDb
-  mongoDb:
-    image: mongo:3.4.10
+      - mongodb
     networks:
-      - book-mongoDb
-    ports:
-      - "27017:27017"
-
+      - greetingservice_default
 networks:
-  book-mongoDb:
+  greetingservice_default:
+
