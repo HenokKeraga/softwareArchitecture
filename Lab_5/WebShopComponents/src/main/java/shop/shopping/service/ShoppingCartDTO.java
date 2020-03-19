@@ -56,7 +56,13 @@ public class ShoppingCartDTO {
 	public double getTotalPrice() {
 		return totalPrice;
 	}
-	
-	
 
+	@Override
+	public String toString() {
+		return "ShoppingCartDTO{" +
+				"cartid='" + cartid + '\'' +
+				", totalPrice=" + totalPrice +
+				", cartlineList=" + cartlineList +
+				'}';
+	}
 }

@@ -20,4 +20,11 @@ public class CartLineDTO {
 		this.quantity = quantity;
 	}
 
+	@Override
+	public String toString() {
+		return "CartLineDTO{" +
+				"quantity=" + quantity +
+				", product=" + product +
+				'}';
+	}
 }

@@ -26,4 +26,5 @@ public class ShoppingCartAdapter {
 		}
 		return shoppingCartDTO;
 	}
+
 }

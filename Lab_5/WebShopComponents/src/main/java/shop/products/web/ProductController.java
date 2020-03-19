@@ -27,12 +27,12 @@ public class ProductController {
 	public ResponseEntity<?> addProduct(@PathVariable String productnumber, @PathVariable String description,
 			@PathVariable double price) {
 		productCatalogService.addProduct(productnumber, description, price);
-		return new ResponseEntity<Product>(HttpStatus.OK);
+		return new ResponseEntity<ProductDTO>(HttpStatus.OK);
 	}
 
 	@PostMapping(value = "/product/stock/{productnumber}/{quantity}/{locationcode}")
 	public ResponseEntity<?> setStock(@PathVariable String productnumber, @PathVariable int quantity, @PathVariable String locationcode){
 		productCatalogService.setStock(productnumber, quantity, locationcode);
-		return new ResponseEntity<Product>(HttpStatus.OK);
+		return new ResponseEntity<ProductDTO>(HttpStatus.OK);
 	}
 }

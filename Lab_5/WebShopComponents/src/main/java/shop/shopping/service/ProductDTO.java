@@ -42,4 +42,12 @@ public class ProductDTO {
 		this.description = description;
 	}
 
+	@Override
+	public String toString() {
+		return "ProductDTO{" +
+				"productnumber='" + productnumber + '\'' +
+				", price=" + price +
+				", description='" + description + '\'' +
+				'}';
+	}
 }
