@@ -101,4 +101,18 @@ public class OrderCustomerDTO {
 		this.country = country;
 	}
 
+	@Override
+	public String toString() {
+		return "OrderCustomerDTO{" +
+				"customerNumber='" + customerNumber + '\'' +
+				", firstname='" + firstname + '\'' +
+				", lastname='" + lastname + '\'' +
+				", email='" + email + '\'' +
+				", phone='" + phone + '\'' +
+				", street='" + street + '\'' +
+				", city='" + city + '\'' +
+				", zip='" + zip + '\'' +
+				", country='" + country + '\'' +
+				'}';
+	}
 }

@@ -87,17 +87,26 @@ public class WebShopApplication implements CommandLineRunner {
 		System.out.println("The first cart is : " +shoppingCartDTO.getBody());
 		//checkout the cart		
 		//todo: call the shopping component to checkout the cart
+		String shoppingUrl="http://localhost:8080/cart/checkout/1";
+		restTemplate.postForObject(shoppingUrl,String.class,ShoppingCartDTO.class);
 		//get the order
 		//todo: call the order component to get the order and print the result 
-		
+		String urlOrder="http://localhost:8080/order/1";
+		ResponseEntity<OrderDTO> orderDTOResponseEntity=restTemplate.getForEntity(urlOrder,OrderDTO.class);
+		System.out.println(" order ::: "+orderDTOResponseEntity.getBody());
 		//add customer to order
 		//todo: call the order component to add a customer to the order
-		
+		 String orderUrl2="http://localhost:8080/order/setCustomer/1/101";
+		 restTemplate.postForObject(orderUrl2,String.class,OrderDTO.class);
 		//confirm the order
 		//todo: call the order component to confirm the order
-		
+		String orderUrl3="http://localhost:8080/order/1";
+		restTemplate.postForObject(orderUrl3,String.class,String.class);
 		//get the order
 		//todo: call the order component to get the order and print the result
+
+		ResponseEntity<OrderDTO> orderDTOResponseEntity2=restTemplate.getForEntity(urlOrder,OrderDTO.class);
+		System.out.println(" order ::: "+orderDTOResponseEntity2.getBody());
 		
 	}
 

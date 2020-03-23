@@ -19,4 +19,12 @@ public class OrderLineDTO {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+
+	@Override
+	public String toString() {
+		return "OrderLineDTO{" +
+				"quantity=" + quantity +
+				", product=" + product +
+				'}';
+	}
 }

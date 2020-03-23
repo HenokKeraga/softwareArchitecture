@@ -93,7 +93,15 @@ public class OrderDTO {
 	public void setOrderlineList(ArrayList<OrderLineDTO> orderlineList) {
 		this.orderlineList = orderlineList;
 	}
-	
-	
 
+	@Override
+	public String toString() {
+		return "OrderDTO{" +
+				"ordernumber='" + ordernumber + '\'' +
+				", date=" + date +
+				", status='" + status + '\'' +
+				", customer=" + customer +
+				", orderlineList=" + orderlineList +
+				'}';
+	}
 }
