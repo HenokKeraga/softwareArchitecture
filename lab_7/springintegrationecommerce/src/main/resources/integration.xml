@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/integration"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:int-http="http://www.springframework.org/schema/integration/http"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/integration/http
+        http://www.springframework.org/schema/integration/http/spring-integration-http.xsd
+        http://www.springframework.org/schema/integration
+        http://www.springframework.org/schema/integration/spring-integration.xsd">
+
+    <channel id="inputChannel"/>
+    <channel id="firstOutPutChannel"></channel>
+    <channel id="secondOutPutChannel"></channel>
+    <channel id="thirdOutPutChannel"></channel>
+    <channel id="domesticOrderServiceChannel"></channel>
+    <channel id="internationalOrderServiceChannel"></channel>
+
+    <filter input-channel="inputChannel" output-channel="firstOutPutChannel" ref="checkAmount" method="checkAmountVerify"></filter>
+    <filter input-channel="firstOutPutChannel" output-channel="secondOutPutChannel" ref="checkStock" method="checkStockVerify"></filter>
+    <filter input-channel="secondOutPutChannel" output-channel="thirdOutPutChannel" ref="payment" method="makePayment"></filter>
+    <payload-type-router input-channel="thirdOutPutChannel">
+        <mapping type="edu.miu.springintegrationecommerce.model.DomesticOrder" channel="domesticOrderServiceChannel"/>
+        <mapping type="edu.miu.springintegrationecommerce.model.InternationalOrder" channel="internationalOrderServiceChannel"></mapping>
+    </payload-type-router>
+
+    <service-activator input-channel="domesticOrderServiceChannel" ref="domesticOrder" method="makeOrder"></service-activator>
+    <service-activator  input-channel="internationalOrderServiceChannel" ref="internationalOrder" method="makeOrder"></service-activator>
+
+
+    <beans:bean id="checkAmount" class="edu.miu.springintegrationecommerce.filter.CheckAmount"></beans:bean>
+    <beans:bean id="checkStock" class="edu.miu.springintegrationecommerce.filter.CheckStock"></beans:bean>
+    <beans:bean id="payment" class="edu.miu.springintegrationecommerce.filter.Payment"></beans:bean>
+    <beans:bean id="domesticOrder" class="edu.miu.springintegrationecommerce.model.DomesticOrder"></beans:bean>
+    <beans:bean id="internationalOrder" class="edu.miu.springintegrationecommerce.model.InternationalOrder"></beans:bean>
+</beans:beans>
+
