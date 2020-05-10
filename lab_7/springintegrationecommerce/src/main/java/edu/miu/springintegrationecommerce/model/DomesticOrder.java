@@ -36,6 +36,7 @@ public class DomesticOrder extends Order {
     @Override
     public void makeOrder(Order order){
         System.out.println("Domestic order ::" +order);
+//        return "success";
     }
 
 }

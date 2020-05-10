@@ -10,7 +10,7 @@
         http://www.springframework.org/schema/integration
         http://www.springframework.org/schema/integration/spring-integration.xsd">
 
-    <channel id="inputChannel"/>
+    <publish-subscribe-channel id="inputChannel"/>
     <channel id="firstOutPutChannel"></channel>
     <channel id="secondOutPutChannel"></channel>
     <channel id="thirdOutPutChannel"></channel>
@@ -22,6 +22,7 @@
     <filter input-channel="secondOutPutChannel" output-channel="thirdOutPutChannel" ref="payment" method="makePayment"></filter>
     <payload-type-router input-channel="thirdOutPutChannel">
         <mapping type="edu.miu.springintegrationecommerce.model.DomesticOrder" channel="domesticOrderServiceChannel"/>
+        <mapping type="edu.miu.springintegrationecommerce.model.Order" channel="domesticOrderServiceChannel"/>
         <mapping type="edu.miu.springintegrationecommerce.model.InternationalOrder" channel="internationalOrderServiceChannel"></mapping>
     </payload-type-router>
 

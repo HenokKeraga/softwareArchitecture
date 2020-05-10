@@ -20,6 +20,7 @@ public class Controller {
 	public String getGreeting(@RequestBody Order order) {
 
 		Message<Order> orderMessage =  MessageBuilder.withPayload(order).build();
+
 		String result=gateway.handleRequest(orderMessage);
 		return result;
 	}

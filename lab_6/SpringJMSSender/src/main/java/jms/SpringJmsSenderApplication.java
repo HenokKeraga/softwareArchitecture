@@ -14,7 +14,6 @@ import org.springframework.jms.support.converter.MessageConverter;
 import org.springframework.jms.support.converter.MessageType;
 
 @SpringBootApplication
-@EnableJms
 public class SpringJmsSenderApplication implements CommandLineRunner{
 	@Autowired
 	JmsSender jmsSender;
@@ -40,8 +39,8 @@ public class SpringJmsSenderApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		jmsSender.sendJMSMessage(new Person("Frank","Brown"));
-		jmsSender.sendJMSMessage(new Person("Mary","Smith"));
+		jmsSender.sendJMSMessage(new Person("test","Brown","texas"));
+		jmsSender.sendJMSMessage(new Person("henok","Smith","texas"));
 	}
 }
 
